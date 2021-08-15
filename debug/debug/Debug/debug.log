@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\HyDra\Desktop\debug\debug\main.cpp(179,24): error C2440: “初始化”: 无法从“const int *”转换为“int *”
+C:\Users\HyDra\Desktop\debug\debug\main.cpp(179,20): message : 转换丢失限定符
+C:\Users\HyDra\Desktop\debug\debug\main.cpp(183,5): error C3892: “p”: 不能给常量赋值
