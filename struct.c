@@ -28,7 +28,7 @@ void Print2(Stu *ps)
 
 int main()
 {
-    Stu s = { "??", 40, "15701983221","boy"};
+    Stu s = { "ะกร๗", 40, "15701983221","boy"};
     //???????
     Print1(s);
     Print2(&s);
