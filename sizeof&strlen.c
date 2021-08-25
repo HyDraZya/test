@@ -73,17 +73,17 @@ int main()
     printf("%d\n", strlen(&p[0]+1));//5 p[0]表示首元素，&p[0]表示首元素地址，&p[0] + 1表示第二个元素'b'的地址,而strlen从'b'开始计算字符串长度
 
     int a[3][4] = {0};
-    printf(" %d\n",sizeof(a));
-    printf("%d\n",sizeof(a[0][0]));
-    printf("%d\n",sizeof(a[0]));
-    printf("%d\n",sizeof(a[0]+1));
-    printf("%d\n",sizeof(*(a[0]+1)));
-    printf("%d\n",sizeof(a+1));
-    printf("%d\n",sizeof(*(a+1)));
-    printf("%d\n",sizeof(&a[0]+1));
-    printf("%d\n",sizeof(*(&a[0]+1)));
-    printf("%d\n",sizeof(*a));
-    printf("%d\n",sizeof(a[3]));
+    printf("%d\n",sizeof(a));//48 3*4*4=48
+    printf("%d\n",sizeof(a[0][0]));//4 指向的是下标0，第一行的第一个元素，因为是int型，大小为4字节
+    printf("%d\n",sizeof(a[0]));//16 a[0]相当于第一行作为一维数组的数组名，第一行一共是4个元素，大小为4*4=16字节
+    printf("%d\n",sizeof(a[0]+1));//4/8 此时a[0]没有单独放到sizeof()表达式中，表示的是首元素地址，此时a[0]+1是第一行第二个元素的地址，所以是4/8个字节
+    printf("%d\n",sizeof(*(a[0]+1)));//4 *(a[0]+1)指向的是第一行第二个元素的地址，地址大小是4/8个字节
+    printf("%d\n",sizeof(a+1));//4/8 a是二维数组的数组名，没有sizeof(数组名)，也没有&数组名，所以a是首元素地址，二维数组的首元素是第一行，此时a+1就是第二行地址，大小是4/8字节
+    printf("%d\n",sizeof(*(a+1)));//16 由于a+1是第二行的地址，而数组的地址解引用就是找到这个数组，大小是4*4=16字节
+    printf("%d\n",sizeof(&a[0]+1));//4/8 &a[0]是第一行的地址，+1后代表第二行的地址，地址大小是4/8字节
+    printf("%d\n",sizeof(*(&a[0]+1)));//16 因为a[0]+1是第二行的地址，*解引用后就是第二行的值，大小是4*4=16字节
+    printf("%d\n",sizeof(*a));//16 因为此时a不是单独放在sizeof()表达式中,所以此时数组名a是首元素的地址即第一行的地址，*解引用后就是第一行的值，所以是4*4=16字节
+    printf("%d\n",sizeof(a[3]));//16 a[3]是第四行，虽然它不存在，但是a[3]其实等于a[0]，即第一行的值，所以是16字节
     system("pause");
     return 0;
 }
