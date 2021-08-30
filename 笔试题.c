@@ -111,21 +111,33 @@
 //}
 
 
+//int main()
+//{
+//	char* c[] = { "ENTER" , "NEW" , "POINT", "FIRST" };
+//	char** cp[] = { c + 3, c + 2, c + 1, c };
+//	char*** cpp = cp;
+//	printf("%s\n", **++cpp);
+//	//POINT 此时cpp因为++后,*++cpp后从指向cp中的'c+3'变为了'c+2'，而'c+2'对应的是数组c中的POINT，所以%s打印POINT
+//	printf("%s \n", *-- * ++cpp + 3);
+//	//ER 首先++的优先级最高，所以*++cpp后从c+2指向了cp中的c+1，而--后，c+1中的1被减去了，所以就是c
+//	//又因为*所以c指向的是'c'对应的数组c中的"ENTER"，又+3，指向了ENTER中的第二个E，所以%s打印出的结果是ER
+//	printf("%s \n", *cpp[-2] + 3);
+//	//ST *cpp[-2]+3即**(cpp+(-2))+3又等价**(cpp-2)+3，而*(cpp-2)指向的是cp中的c+3的地址
+//	//又因为*所以指向了'c+3'对应的c中存的"FISRT"，又+3，指向了FIRST当中的S，所以%s打印出的结果是ST
+//	printf("%s \n", cpp[-1][-1] + 1);
+//	//EW cpp[-1][-1]+1等价于*(*(cpp-1)-1)+1,首先*(cpp-1)，此时指向了cp中的c+2地址，而c+2-1后得到c+1
+//	//又因为*所以此时指向了'c+1'对应的数组c中存的"NEW"，又+1,指向了NEW中的E，所以%s打印出的结果是EW
+//	return 0;
+//}
+
+
 int main()
 {
-	char* c[] = { "ENTER" , "NEW" , "POINT", "FIRST" };
-	char** cp[] = { c + 3, c + 2, c + 1, c };
-	char*** cpp = cp;
-	printf("%s\n", **++cpp);
-	//POINT 此时cpp因为++后,*++cpp后从指向cp中的'c+3'变为了'c+2'，而'c+2'对应的是数组c中的POINT，所以%s打印POINT
-	printf("%s \n", *-- * ++cpp + 3);
-	//ER 首先++的优先级最高，所以*++cpp后从c+2指向了cp中的c+1，而--后，c+1中的1被减去了，所以就是c
-	//又因为*所以c指向的是'c'对应的数组c中的"ENTER"，又+3，指向了ENTER中的第二个E，所以%s打印出的结果是ER
-	printf("%s \n", *cpp[-2] + 3);
-	//ST *cpp[-2]+3即**(cpp+(-2))+3又等价**(cpp-2)+3，而*(cpp-2)指向的是cp中的c+3的地址
-	//又因为*所以指向了'c+3'对应的c中存的"FISRT"，又+3，指向了FIRST当中的S，所以%s打印出的结果是ST
-	printf("%s \n", cpp[-1][-1] + 1);
-	//EW cpp[-1][-1]+1等价于*(*(cpp-1)-1)+1,首先*(cpp-1)，此时指向了cp中的c+2地址，而c+2-1后得到c+1
-	//又因为*所以此时指向了'c+1'对应的数组c中存的"NEW"，又+1,指向了NEW中的E，所以%s打印出的结果是EW
-	return 0;
+    int len1 = strlen("abcdef");
+    printf("%d\n", len1);
+    char arr[] = { 'a','b','c','d','e','f' };
+    int len2 = strlen(arr);
+    printf("%d\n", len2);
+    system("pause");
+    return 0;
 }
