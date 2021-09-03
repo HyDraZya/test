@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 
 #define MAX 1000
@@ -7,19 +8,19 @@
 #define MAX_PHONE 12
 #define MAX_ADDRESS 30
 
-
-enum Option
+//枚举：选择功能
+enum Choose
 {
-    EXIT,
-    ADD,
-    DEL,
-    SERACH,
-    MODIFY,
-    SHOW,
-    SORT
+    EXIT,  //0
+    ADD,   //1
+    DEL,   //2
+    SEARCH,//3
+    MODIFY,//4
+    SHOW,  //5
+    SORT   //6
 };
 
-//通讯录信息
+//结构体：通讯录中每个成员的信息
 struct PeoInfo
 {
     char name[MAX_NAME];
@@ -36,12 +37,12 @@ struct Contact
     int size;//记录当前结构体内已经有的元素个数
 };
 
-//声明类型
+
 //初始化通讯录的函数
 void InitContact(struct Contact *ps)
 {
-    memset(ps->data, 0, sizoef(ps->data));
-    ps->size= 0;//设置通讯录最初只有0个元素
+    memset(ps->data, 0, sizeof(ps->data));
+    ps->size = 0;//设置通讯录最初只有0个元素
 }
 
 //增加一个信息到通讯录
@@ -49,7 +50,7 @@ void AddContact(struct Contact *ps)
 {
     if(ps->size == MAX)
     {
-        printf("通讯录已满，无法增加");
+        printf("通讯录已满，无法增加\n");
     }
     else
     {
@@ -70,7 +71,7 @@ void AddContact(struct Contact *ps)
 }
 
 //修饰FindByName函数，使其封装在程序内部，不暴露出去
-static int FindByName(const struct Contact* ps, char name[MAX_NAME])
+static int FindByName(const struct Contact *ps, char name[MAX_NAME])
 {
     int i = 0;
     for(i = 0; i < ps->size; i++)
@@ -83,46 +84,51 @@ static int FindByName(const struct Contact* ps, char name[MAX_NAME])
     return -1;//找不到的情况
 }
 
-//删除制定的联系人
+//删除指定的联系人
 void DelContact(struct Contact *ps)
 {
     char name[MAX_NAME];
     printf("请输入要删除人的名字:>");
-    scanf("%s", ps->data[ps->size].name);
+    scanf("%s", name);
     //1.查找要删除的人在什么位置
     //找到了返回名字所在元素的下标
     //找不到返回 -1
-    int pos = FindbyName(ps, name);
+    int pos = FindByName(ps, name);
+    //2.删除
+    //查询不到联系人
     if (pos == -1)
     {
-        printf("要删除的联系人不存在，请重试\n");
+        printf("查询不到要删除的联系人，请重试\n");
     }
-    //2.删除数据
-    int j = 0;
-    for(j = pos; j < ps->size; j++)
+    else
     {
-        ps->data[j] = ps->data[j+1];
-        //由于删除了这个数据，所以后面的数据会顶替上来
+        //删除数据
+        int j = 0;
+        for(j = pos; j < ps->size-1; j++)
+        {
+            ps->data[j] = ps->data[j + 1];
+            //由于删除了这个数据，所以后面的数据会顶替上来
+        }
+        ps->size--;
+        printf("删除成功\n");
     }
-    ps->size--;
-    printf("删除成功\n");
 }
 
 //查找指定的人的信息
-void SearchContact(struct Contact *ps)
+void SearchContact(const struct Contact *ps)
 {
     char name[MAX_NAME];
     printf("请输入要查找人的名字:>");
     scanf("%s", name);
-    int pos = FindbyName(ps, name);
-    if(pos == -1)
+    int pos = FindByName(ps, name);
+    if (pos == -1)
     {
         printf("要查找的人不存在,请重试\n");
     }
     else
     {
         printf("%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n", "名字", "年龄", "性别", "电话", "地址");
-        printf("%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n",
+        printf("%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n",
             ps->data[pos].name,
             ps->data[pos].age,
             ps->data[pos].sex,
@@ -137,7 +143,7 @@ void MoidfyContact(struct Contact *ps)
     char name[MAX_NAME];
     printf("请输入要修改联系人的名字:>");
     scanf("%s", name);
-    int pos = FineByName(ps, name);
+    int pos = FindByName(ps, name);
     if (pos == -1)
     {
         printf("要修改联系人的信息不存在，请重试\n");
@@ -170,10 +176,12 @@ void ShowContact(const struct Contact *ps)
     else
     {
         int i = 0;
+        //标题
         printf("%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n", "名字", "年龄", "性别", "电话", "地址");
+        //数据
         for(i = 0; i < ps->size; i++)
         {
-            printf("%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n",
+            printf("%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n",
             ps->data[i].name,
             ps->data[i].age,
             ps->data[i].sex,
@@ -186,47 +194,29 @@ void ShowContact(const struct Contact *ps)
 //排序通讯录内容
 void SortContact(struct Contact *ps)
 {
-    if(ps == NULL)
-    {
-        printf("空通讯录！\n");
-        return 0;
-    }
-    int i = 0;
-    for(i= 0; i < ps->size - 1; i++)
-    {
-        int j = 0;
-        for (; j< ps->size - 1 - i; ++j)
-        {
-             if (strcmp(ps->data[j].name, ps->data[j + 1].name) > 0)
-            {
-                char name[MAX_NAME];
-                strcpy(name, ps->data[j].name);
-                strcpy(ps->data[j].name, ps->data[j + 1].name);
-                strcpy(ps->data[j + 1].name, name);
-    }
+    
 }
 
 void menu()
 {
 	printf("*********************************\n");
-	printf("**        1. 添加联系人         **\n");
-	printf("**        2. 删除联系人         **\n");
-	printf("**        3. 查找联系人         **\n");
-	printf("**        4. 修改联系人         **\n");
-	printf("**        5. 显示所有联系人      **\n");
-	printf("**        6. 按姓名排序联系人    **\n");
-	printf("**        0. exit              **\n");
+	printf("**      1. 添加联系人          **\n");
+	printf("**      2. 删除联系人          **\n");
+	printf("**      3. 查找联系人          **\n");
+	printf("**      4. 修改联系人          **\n");
+	printf("**      5. 显示所有联系人      **\n");
+	printf("**      6. 按姓名排序联系人    **\n");
+	printf("**      0. exit                **\n");
 	printf("*********************************\n");
 }
-
 
 int main()
 {
     int input = 0;
     //创建通讯录
-    struct PeoInfo con[MAX];//con就是通讯录，里面包含：1000个元素的数和size
+    struct Contact con;//con就是通讯录，里面包含：1000个元素的数和size
     //初始化通讯录
-    InitContact(con);
+    InitContact(&con);
     do
     {
         menu();
@@ -234,25 +224,25 @@ int main()
         scanf("%d", &input);
         switch(input)
         {
-        case 1:
+        case ADD:
             AddContact(&con);
             break;
-        case 2:
+        case DEL:
             DelContact(&con);
             break;
-        case 3:
+        case SEARCH:
             SearchContact(&con);
             break;
-        case 4:
+        case MODIFY:
             MoidfyContact(&con);
             break;
-        case 5:
+        case SHOW:
             ShowContact(&con);
             break;
-        case 6:
+        case SORT:
             SortContact(&con);
             break;
-        case 0:
+        case EXIT:
             printf("退出通讯录\n");
             break;
         default:
@@ -260,5 +250,6 @@ int main()
             break;
         }
     } while (input);
+    system("pause");
     return 0;
 }
