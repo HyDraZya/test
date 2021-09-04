@@ -21,19 +21,19 @@ enum Choose
 };
 
 //结构体：通讯录中每个成员的信息
-struct PeoInfo
+typedef struct PeoInform
 {
     char name[MAX_NAME];
     int age;
     char sex[MAX_SEX];
     char phone[MAX_PHONE];
     char address[MAX_ADDRESS];
-};
+}PeoInform;
 
 //通讯录类型
 struct Contact
 {
-    struct PeoInfo data[MAX];//存放1000个信息
+    struct PeoInform data[MAX];//存放1000个信息
     int size;//记录当前结构体内已经有的元素个数
 };
 
@@ -191,10 +191,28 @@ void ShowContact(const struct Contact *ps)
     }
 }
 
-//排序通讯录内容
+//按姓名排序通讯录内容
 void SortContact(struct Contact *ps)
 {
-    
+    if (ps->size <= 0){
+		printf("通讯录中没有联系人，请添加!\n");
+	}
+	int i = 0;
+	int j = 0;
+	for (i = 0; i< ps->size - 1; i++)
+	{
+		for (j = 0; j< ps->size - i - 1; j++)
+		{
+			if (strcmp( ps->data[j].name, ( ps->data[j + 1]).name) > 0)
+			{
+                PeoInform tmp;
+				tmp = ps->data[j];
+				ps->data[j] = ps->data[j + 1];
+				ps->data[j + 1] = tmp;
+			}
+		}
+		printf("排序成功！\n");
+	}
 }
 
 void menu()
@@ -250,6 +268,5 @@ int main()
             break;
         }
     } while (input);
-    system("pause");
     return 0;
 }
