@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX 1000
 #define MAX_NAME 20
-#define MAX_SEX 5
+#define MAX_SEX 10
 #define MAX_PHONE 12
 #define MAX_ADDRESS 30
 
@@ -57,7 +57,7 @@ void AddContact(struct Contact *ps)
         printf("请输入名字:>");
         scanf("%s", ps->data[ps->size].name);
         printf("请输入年龄:>");
-        scanf("%s", &(ps->data[ps->size].age));
+        scanf("%d", &(ps->data[ps->size].age));
         printf("请输入性别:>");
         scanf("%s", ps->data[ps->size].sex);
         printf("请输入电话:>");
@@ -153,7 +153,7 @@ void MoidfyContact(struct Contact *ps)
         printf("请输入名字:>");
         scanf("%s", ps->data[pos].name);
         printf("请输入年龄:>");
-        scanf("%s", &(ps->data[pos].age));
+        scanf("%d", &(ps->data[pos].age));
         printf("请输入性别:>");
         scanf("%s", ps->data[pos].sex);
         printf("请输入电话:>");
@@ -166,7 +166,7 @@ void MoidfyContact(struct Contact *ps)
 }
 
 
-//展示通讯录中的信息
+//展示通讯录中联系人的信息
 void ShowContact(const struct Contact *ps)
 {
     if(ps->size == 0)
