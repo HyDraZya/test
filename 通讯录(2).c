@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
- 
+#include <malloc.h>
 //初始空间为5个
+
 #define ORG_SPACE 5
 
 #define MAX_NAME 20
