@@ -1,5 +1,5 @@
-// #include <stdio.h>
-// #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 // int main()
 // {
 //     int uchida;
@@ -297,34 +297,325 @@
 //     return 0;
 // }
 
-#include <stdio.h>
-#include <stdlib.h>
-#define NUMBER 5
+// #include <stdio.h>
+// #include <stdlib.h>
+// #define NUMBER 5
+
+// int main()
+// {
+//     int i;
+//     int tensu[NUMBER];
+//     int max, min;
+
+//     puts("请输入学生的分数。");
+//     for(i = 0; i < NUMBER; i++)
+//     {
+//         printf("%2d号：", i + 1);
+//         scanf("%d", &tensu[i]);
+//     }
+
+//     min = max = tensu[0];
+//     for(i = 1; i < NUMBER; i++)
+//     {
+//         if(tensu[i] > max)
+//             max = tensu[i];
+//         if(tensu[i] < min)
+//             min = tensu[i];
+//     }
+
+//     printf("最高分：%d\n", max);
+//     printf("最低分：%d\n", min);
+//     system("pause");
+//     return 0;
+// }
+
+// #include <Stdio.h>
+// #include <stdlib.h>
+// int main()
+// {
+//     double a;
+//     int b;
+//     a = b = 1.5;
+//     printf("a = %lf\n", a);
+//     printf("b = %d\n", b);
+//     system("Pause");
+//     return 0;
+// }
+
+// #include <Stdio.h>
+// #include <stdlib.h>
+// #define NUMBER 5
+// int main()
+// {
+//     int i;
+//     int snum = 0;
+//     int tensu[NUMBER];
+//     int succs[NUMBER];
+    
+//     puts("请输入学生的分数。");
+//     for(i = 0; i < NUMBER; i++)
+//     {
+//         printf("%2d号：", i + 1);
+//         scanf("%d", &tensu[i]);
+//         if(tensu[i] >= 60)
+//             succs[snum++] = i;
+//     }
+
+//     puts("及格学生一览表");
+//     puts("--------------");
+//     for(i = 0; i < snum; i++)
+//     {
+//         printf("%d2号(%3d分)\n", succs[i] + 1, tensu[succs[i]]);
+//     }
+//     system("pause");
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// #define NUMBER 80
+
+// int main()
+// {
+//     int i, j;
+//     int num;
+//     int tensu[NUMBER];
+//     int bunpu[11] = {0};
+
+//     printf("请输入学生人数：");
+//     do  {
+//         scanf("%d", &num);
+//         if(num < 1 || num > NUMBER)
+//         {
+//             printf("\a人数范围[1到%d]：", NUMBER);
+//         }
+//     }   while(num < 1 || num > NUMBER);
+    
+//     puts("请输入学生的分数。");
+//     for(i = 0 ; i < num; i++)
+//     {
+//         printf("%2d号：", i + 1);
+//         do  {
+//             scanf("%d", &tensu[i]);
+//             if(tensu[i] < 0 || tensu[i] > 100)
+//             {
+//                 printf("\a分数范围[0到100]：");
+//             }   
+//         }   while(tensu[i] < 0 || tensu[i] > 100);
+//         bunpu[tensu[i] / 10]++;
+//     }
+
+//     puts("\n口 分布图 口");
+//     printf("      100:");
+//     for(j = 0; j < bunpu[10]; j++)
+//     {
+//         putchar('*');
+//     }
+//     putchar('\n');
+
+//     for(i = 9; i >= 0; i--)
+//     {
+//         printf("%3d - %3d:", i * 10, i * 10 + 9);
+//         for(j = 0; j < bunpu[i]; j++)
+//         {
+//             putchar('*');
+//         }
+//         putchar('\n');
+//     }
+
+//     system("pause");
+//     return 0;
+// }
+
+// int main()
+// {
+//     int i, j;
+//     int ma[2][3] = {{1, 2, 3}, {4, 5, 6}};
+//     int mb[2][3] = {{6, 3, 4}, {5, 1, 2}};
+//     int mc[2][3] = {0};
+//     for(i = 0; i < 2; i++)
+//     {
+//         for(j = 0; j < 3; j++)
+//         {
+//             mc[i][j] = ma[i][j] +mb[i][j];
+//         }
+//     }
+//     for(i = 0; i < 2; i++)
+//     {
+//         for(j = 0; j < 3; j++)
+//         {
+//             printf("%3d", mc[i][j]);
+//         }
+//         putchar('\n');
+//     }
+//     system("pause");
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// int main()
+// {
+//     int i, j, k;
+//     int x[2][3] = {{1, 2, 3}, {4, 5 ,6}};
+//     int y[3][2] = {{1, 5}, {5, 3}, {8, 1}};
+//     int z[2][2];
+    
+//     for(i = 0; i < 2; i++)
+//     {
+//         for(j = 0; j < 2; j++)
+//         {
+//             for(k = 0; k < 3; k++)
+//             {
+//                 (z[i][j] += x[i][k] * y[k][j]);
+//             }
+//         }
+//     }
+//     for(i = 0; i < 2; i++)
+//     {
+//         for(j = 0; j < 2; j++)
+//         {
+//             printf("%d\t", z[i][j]);
+//         }
+//         printf("\n");
+//     }
+//     system("Pause");
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// int main()
+// {
+//     int i, no;
+//     unsigned long counter = 0;
+//     for(no = 2; no <= 1000; no++)
+//     {
+//         for(i = 2; i < no; i++)
+//         {
+//             counter++;
+//             if(no % i == 0)
+//             {
+//                 break;
+//             }
+//         }
+//         if(no == i)
+//         {
+//             printf("%d\n", no);
+//         }
+//     }
+//     printf("乘除运算的次数：%lu\n", counter);
+//     system("pause");
+//     return 0;
+// }
+
+// int main()
+// {
+//     int i, no;
+//     unsigned long counter = 0;
+//     no = 2;
+//     printf("%d\n", no++);
+
+//     for(; no <= 1000; no +=2)
+//     {
+//         for(i = 2; i < no; i++)
+//         {
+//             counter++;
+//             if(no % i == 0)
+//                 break;
+//         }
+//         if(no == i)
+//             printf("%d\n", no);
+//     }
+
+//     printf("乘除运算的次数：%lu\n", counter);
+//     system("pause");
+//     return 0;
+// }
+
+// int main()
+// {
+//     int i, no;
+//     unsigned long counter = 0;
+//     no = 2;
+//     printf("%d\n", no++);
+
+//     for(; no <= 1000; no +=2)
+//     {
+//         for(i = 3; i < no; i+=2)
+//         {
+//             counter++;
+//             if(no % i == 0)
+//                 break;
+//         }
+//         if(no == i)
+//             printf("%d\n", no);
+//     }
+
+//     printf("乘除运算的次数：%lu\n", counter);
+//     system("pause");
+//     return 0;
+// }
+
+// int main()
+// {
+//     int i, no;
+//     int prime[500];
+//     int ptr = 0;
+//     unsigned long counter = 0;
+//     prime[ptr++] = 2;
+//     prime[ptr++] = 3;
+//     for(no = 5; no <= 1000; no += 2)
+//     {
+//         for(i = 1; i < ptr; i++)
+//         {
+//             counter++;
+//             if(no % prime[i] == 0)
+//                 break;
+//         }
+//         if(ptr == i)
+//             prime[ptr++] = no;
+//     }
+//     for(i = 0; i < ptr; i++)
+//     {
+//         printf("%d\n", prime[i]);
+//     }
+//     printf("乘除运算的次数：%lu\n", counter);
+//     system("pause");
+//     return 0;
+// }
 
 int main()
 {
-    int i;
-    int tensu[NUMBER];
-    int max, min;
-
-    puts("请输入学生的分数。");
-    for(i = 0; i < NUMBER; i++)
+    int i, no;
+    int prime[500];
+    int ptr = 0;
+    unsigned long counter = 0;
+    prime[ptr++] = 2;
+    prime[ptr++] = 3;
+    for(no = 5; no <= 1000; no += 2)
     {
-        printf("%2d号：", i + 1);
-        scanf("%d", &tensu[i]);
+        int flag = 0;
+        for(i = 1; counter++, prime[i] * prime[i] <= no; i++)
+        {
+            counter++;
+            if(no % prime[i] == 0)
+            {
+                flag = 1;
+                break;
+            } 
+        }
+        if(!flag)
+        {
+            prime[ptr++] = no;
+        }
     }
-
-    min = max = tensu[0];
-    for(i = 1; i < NUMBER; i++)
+    for(i = 0; i < ptr; i++)
     {
-        if(tensu[i] > max)
-            max = tensu[i];
-        if(tensu[i] < min)
-            min = tensu[i];
+        printf("%d\n", prime[i]);
     }
+    printf("乘除运算的次数：%lu\n", counter);
 
-    printf("最高分：%d\n", max);
-    printf("最低分：%d\n", min);
-    system("pause");
+    system("pause");  
     return 0;
 }
